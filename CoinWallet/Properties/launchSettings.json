@@ -2,13 +2,9 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
-    "iis": {
-      "applicationUrl": "http://localhost/CoinWallet",
-      "sslPort": 0
-    },
     "iisExpress": {
-      "applicationUrl": "http://localhost:50577",
-      "sslPort": 44395
+      "applicationUrl": "http://localhost:54990",
+      "sslPort": 0
     }
   },
   "$schema": "http://json.schemastore.org/launchsettings.json",
@@ -20,8 +16,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "sqlDebugging": false,
-      "ancmHostingModel": "OutOfProcess",
+      "sqlDebugging": true,
       "nativeDebugging": false
     },
     "CoinWallet": {
@@ -31,7 +26,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:5001;http://localhost:5000"
+      "applicationUrl": "http://localhost:5000"
     },
     "Docker": {
       "commandName": "Docker",

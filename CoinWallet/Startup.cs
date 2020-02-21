@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using CoinWallet.DomainModel;
 using System;
 using CoinWallet.Web.CustomMiddleWare;
+using System.Linq;
 
 namespace CoinWallet.Web
 {
@@ -53,8 +54,6 @@ namespace CoinWallet.Web
 
             app.ConfigureCustomExceptionMiddleware();
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthorization();
@@ -63,6 +62,24 @@ namespace CoinWallet.Web
             {
                 endpoints.MapControllers();
             });
+
+            ApplyMigrations(app);
+        }
+
+        private static void ApplyMigrations(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices
+                .GetRequiredService<IServiceScopeFactory>()
+                .CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>())
+                {
+                    if (context.Database.GetPendingMigrations().Any())
+                    {
+                        context.Database.Migrate();
+                    }
+                }
+            }
         }
     }
 }

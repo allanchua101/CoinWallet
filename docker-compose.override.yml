@@ -1,0 +1,9 @@
+version: '3.4'
+
+services:
+  coinwallet.web:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://localhost:8080
+    ports:
+      - "80"
